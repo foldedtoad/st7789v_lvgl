@@ -1,0 +1,62 @@
+/*********************************************************************
+* Start Ozone fresh (create new project) as you normally would, but  
+* before you download and run your firmware app, save the project 
+* somewhere when you can easily get to. Exit Ozone without starting.
+* Edit the Ozone project file (ex. ozone.jdebug) and find the 
+* following sections.  Replace these two sections with the snippets 
+* below.  These snippets allow Ozone to run boot_stage1 and
+* boot_stage2 prior to your code.  This is necessary in order to 
+* configure the QSPI based flash for XIP (Execute In Place)
+* operations.
+* After you have modified and save your ozone.jdebug file, you can
+* now start Ozone again and load your firmware code.  
+*
+* See: https://wiki.segger.com/Debug_on_a_Target_with_Bootloader
+*
+**********************************************************************/
+
+/*********************************************************************
+*
+*       AfterTargetReset
+*
+* Function description
+*   Event handler routine. Optional.
+*   The default implementation initializes SP and PC to reset values.
+**
+**********************************************************************
+*/
+void AfterTargetReset (void) {
+  unsigned int SP;
+  unsigned int PC;
+
+  Util.Log("*** AfterTargetReset ***");
+
+  SP = Target.ReadU32(0x00000000);
+  Target.SetReg("SP", SP);
+  
+  PC = Target.ReadU32(0x00000004);
+  Target.SetReg("PC", PC);
+}
+
+/*********************************************************************
+*
+*      AfterTargetDownload
+*
+* Function description
+*   Event handler routine. Optional.
+*   The default implementation initializes SP and PC to reset values.
+*
+**********************************************************************
+*/
+void AfterTargetDownload (void) {
+  unsigned int SP;
+  unsigned int PC;
+
+  Util.Log("*** AfterTargetDownload ***");
+  
+  SP = Target.ReadU32(0x00000000);
+  Target.SetReg("SP", SP);
+  
+  PC = Target.ReadU32(0x00000004);
+  Target.SetReg("PC", PC);
+}

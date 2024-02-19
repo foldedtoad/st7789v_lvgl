@@ -1,0 +1,117 @@
+/*
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            pinmux = <SPI0_CSN_P1>, // pin 2, GP1
+                     <SPI0_SCK_P2>, // pin 4. GP2
+                     <SPI0_TX_P3>;  // pin 5. GP3
+        };
+        group2 {
+            pinmux = <SPI0_RX_P0>;  // pin 1, GP0 (not used)
+            input-enable;
+        };
+    };
+
+    uart0_default: uart0_default {
+        group1 {
+            pinmux = <UART0_TX_P12>;  // pin 16, GP12
+        };
+        group2 {
+            pinmux = <UART0_RX_P13>;  // pin 17, GP13
+            input-enable;
+        };
+    };
+};
+
+&spi0 {
+    status = "okay";
+    clock-frequency = <DT_FREQ_M(8)>;
+    status = "okay";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-names = "default";
+
+    st7789v_pico_w: st7789v@0 {
+        compatible = "sitronix,st7789v";
+        spi-max-frequency = <8000000>;
+        reg = <0>;
+        cmd-data-gpios = <&gpio0 5 GPIO_ACTIVE_LOW>; // pin 7, GP5
+        reset-gpios    = <&gpio0 4 GPIO_ACTIVE_LOW>; // pin 6, GP4
+        width  = <320>;
+        height = <170>;
+        x-offset = <0>;
+        y-offset = <35>;
+        vcom = <0x2B>;
+        gctrl = <0x35>;
+        vrhs = <0x0F>;
+        vdvs = <0x20>;
+        mdac = <0x60>;
+        gamma = <0x01>;
+        colmod = <0x55>;
+        lcm = <0x2C>;
+        porch-param = [0C 0C 00 33 33];
+        cmd2en-param = [5A 69 02 01];
+        pwctrl1-param = [52 A1];
+        pvgam-param = [D0 00 02 07 0B 1A 31 54 40 29 12 12 12 17];
+        nvgam-param = [D0 00 02 07 05 15 2D 44 44 1C 18 16 1C 1D];
+        ram-param = [00 F8];
+        rgb-param = [CD 08 14];
+    };
+};
+
+&uart0 {
+    current-speed = <115200>;
+    status = "okay";
+    pinctrl-0 = <&uart0_default>;
+    pinctrl-names = "default";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+/ {
+
+    chosen {
+        zephyr,display = &st7789v_pico_w;
+    };
+
+    buttons {
+        compatible = "gpio-keys";
+        button0: button_0 {
+            gpios = <&gpio0 7 GPIO_ACTIVE_LOW>; // pin10, GP7
+            label = "Button 0";
+        };
+        button1: button_1 {
+            gpios = <&gpio0 8 GPIO_ACTIVE_LOW>; // pin11, GP8
+            label = "Button 1";
+        };
+        button2: button_2 {
+            gpios = <&gpio0 9 GPIO_ACTIVE_LOW>; // pin12, GP9
+            label = "Button 2";
+        };
+        button3: button_3 {
+            gpios = <&gpio0 10 GPIO_ACTIVE_LOW>; // pin14, GP10
+            label = "Button 3";
+        };
+    };
+
+    backlight {
+        compatible = "gpio-leds";
+        backlight0: backlight_0 {
+            gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>; // pin9, GP6
+            label = "BACKLIGHT";
+        };
+    };
+
+    aliases {
+        sw0 = &button0;
+        sw1 = &button1;
+        sw2 = &button2;
+        sw3 = &button3;
+        backlight = &backlight0;
+    };
+};

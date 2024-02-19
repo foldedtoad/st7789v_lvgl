@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2024  Callender Consulting LLC
+
+mainmenu "ST7789V_App_options"
+
+menu "Application Options" 
+
+choice
+  prompt "Backlight Configuration"
+  default BACKLIGHT_FIRMWARE
+  help
+    Select the method to configure/power the panel's backlight.
+
+  config BACKLIGHT_FIRMWARE
+    bool "Firmware"
+
+  config BACKLIGHT_MANUAL
+    bool "Manual"
+endchoice
+
+endmenu # ST7789V_App_options
+
+# include main Zephyr menu entries from Zephyr root directory
+source "Kconfig.zephyr"
