@@ -25,9 +25,9 @@ Be sure to wire the backlight pin, othewise the panel will remain dark.
 ## How to Build
 This project was developed using Zephyr V3.5, and successfully built on both Ubuntu and MacOS.  
 
-**NOTE** If you use the Segger Ozone debugger, you must update the ozone ****.jdebug*** file. See ***ozone_pico_bootloader.txt*** for details.
+**NOTE** -- If you use the Segger Ozone debugger, you must update the ozone ****.jdebug*** file. See ***ozone_pico_bootloader.txt*** for details.
 
-**NOTE** -- The default resolution settings in the ***overlay*** files are set to 320x170.  
+**NOTE** -- The default resolution settings in the ***rpi_pico_w.overlay*** files are set to 320x170.  
 Many displays will have a resolution of 320x240, so update the height and width parameters according to your display panel's resolution.
 
 ### CMake Method
