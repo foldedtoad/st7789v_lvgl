@@ -3,23 +3,21 @@
 ## Overview
 Display "Hello World" and a dynamic counter using LVGL.  
 
-This sample application displays "Hello World" in the center of the screen
-and a counter at the bottom which increments every second. 
+This sample application displays some simple LvGL capabilities using a Pico-W and ST7789V display panel.
 
 It is hoped this project will provide a template for for ST7789 support on other SoC+board combinations.
 
 See the following video links --
-* [PCA10056 nRF52840](https://studio.youtube.com/video/sml6Ic_K4g4) 
-* [Pico-W rp2040](https://youtu.be/FVRU7HFSb6Y)
+* [Pico-W rp2040](https://youtu.be/FVRU7HFSb6Y)  fix me!
 
 ## Requirements
 
-Display shield and a board which provides a configuration
+Display panel and a board which provides a configuration
 for example:
 
-* [**ST7789**](https://www.aliexpress.us/item/3256805850192151.html) display panel.
-* **PCA10056** Nordic nRF52840 Eval Board.
+* **ST7789V** based display panel:  [example](https://www.aliexpress.us/item/3256805850192151.html).
 * **PICO or PICO-W** Raspberry Pi RP2040 Eval Board.
+* **Momentary Switches** (4 each)
 
 ### Wiring and Soldering
 The 0.10" headers will need to be soldered onto the display pannel. In addition, wiring between the display panel and the PCA10056 board needs to be made.  
@@ -46,4 +44,4 @@ Edit the CMakeList.txt file to select the target board.
 ### West Method
 1) ***cd*** to st7789v_alternate directory
 2) ***rm -rf build***
-3) ***west build -b board-name***  -- board-name is either **nrf52840dk_nrf52840** or **rpi_pico_w**
+3) ***west build -b rpi_pico_w**
