@@ -281,29 +281,29 @@ void display_screens_init(void)
     //
     lv_obj_t * screen2_label0_tag = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label0_tag, "value-0");
-    lv_obj_align_to(screen2_label0_tag, screens[2].screen, LV_ALIGN_TOP_RIGHT, -200, 10);
+    lv_obj_align_to(screen2_label0_tag, screens[2].screen, LV_ALIGN_RIGHT_MID, -200, -25);
 
     screen2_label0_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label0_obj, "0");
-    lv_obj_align_to(screen2_label0_obj, screens[2].screen, LV_ALIGN_TOP_RIGHT, -45, 10);
+    lv_obj_align_to(screen2_label0_obj, screens[2].screen, LV_ALIGN_RIGHT_MID, -100, -25);
 
     //
     lv_obj_t * screen2_label1_tag = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label1_tag, "value-1");
-    lv_obj_align_to(screen2_label1_tag, screens[2].screen, LV_ALIGN_RIGHT_MID, -200, -15);
+    lv_obj_align_to(screen2_label1_tag, screens[2].screen, LV_ALIGN_RIGHT_MID, -200, 0);
 
     screen2_label1_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label1_obj, "0");
-    lv_obj_align_to(screen2_label1_obj, screens[2].screen, LV_ALIGN_RIGHT_MID, -45, -15);
+    lv_obj_align_to(screen2_label1_obj, screens[2].screen, LV_ALIGN_RIGHT_MID, -100, 0);
 
     //
     lv_obj_t * screen2_value2_tag = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_value2_tag, "value-2");
-    lv_obj_align_to(screen2_value2_tag, screens[2].screen, LV_ALIGN_BOTTOM_RIGHT, -200, -15);
+    lv_obj_align_to(screen2_value2_tag, screens[2].screen, LV_ALIGN_RIGHT_MID, -200, 25);
 
     screen2_label2_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label2_obj, "0");
-    lv_obj_align_to(screen2_label2_obj, screens[2].screen, LV_ALIGN_BOTTOM_RIGHT, -45, -15);
+    lv_obj_align_to(screen2_label2_obj, screens[2].screen, LV_ALIGN_RIGHT_MID, -100, 25);
 
     /*
      *  build basic screen3
