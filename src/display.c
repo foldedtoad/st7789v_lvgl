@@ -32,8 +32,9 @@ static const struct device * display_dev;
 #define PARAM_COUNT     3  //4
 
 LV_IMG_DECLARE(image_1);
-LV_IMG_DECLARE(icon2);
-LV_IMG_DECLARE(icon3);
+//LV_IMG_DECLARE(image_2);
+LV_IMG_DECLARE(image_3);
+
 
 void display_timer_handler(struct k_timer * timer);
 void display_task_handler(struct k_work * work);
@@ -280,29 +281,29 @@ void display_screens_init(void)
     //
     lv_obj_t * screen2_label0_tag = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label0_tag, "value-0");
-    lv_obj_align_to(screen2_label0_tag, screens[2].screen, LV_ALIGN_TOP_RIGHT, -70, 2);
+    lv_obj_align_to(screen2_label0_tag, screens[2].screen, LV_ALIGN_TOP_RIGHT, -200, 10);
 
     screen2_label0_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label0_obj, "0");
-    lv_obj_align_to(screen2_label0_obj, screens[2].screen, LV_ALIGN_TOP_RIGHT, -45, 2);
+    lv_obj_align_to(screen2_label0_obj, screens[2].screen, LV_ALIGN_TOP_RIGHT, -45, 10);
 
     //
     lv_obj_t * screen2_label1_tag = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label1_tag, "value-1");
-    lv_obj_align_to(screen2_label1_tag, screens[2].screen, LV_ALIGN_RIGHT_MID, -70, 0);
+    lv_obj_align_to(screen2_label1_tag, screens[2].screen, LV_ALIGN_RIGHT_MID, -200, -15);
 
     screen2_label1_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label1_obj, "0");
-    lv_obj_align_to(screen2_label1_obj, screens[2].screen, LV_ALIGN_RIGHT_MID, -45, 0);
+    lv_obj_align_to(screen2_label1_obj, screens[2].screen, LV_ALIGN_RIGHT_MID, -45, -15);
 
     //
     lv_obj_t * screen2_value2_tag = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_value2_tag, "value-2");
-    lv_obj_align_to(screen2_value2_tag, screens[2].screen, LV_ALIGN_BOTTOM_RIGHT, -70, -2);
+    lv_obj_align_to(screen2_value2_tag, screens[2].screen, LV_ALIGN_BOTTOM_RIGHT, -200, -15);
 
     screen2_label2_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_label2_obj, "0");
-    lv_obj_align_to(screen2_label2_obj, screens[2].screen, LV_ALIGN_BOTTOM_RIGHT, -45, -2);
+    lv_obj_align_to(screen2_label2_obj, screens[2].screen, LV_ALIGN_BOTTOM_RIGHT, -45, -15);
 
     /*
      *  build basic screen3
@@ -313,7 +314,7 @@ void display_screens_init(void)
     lv_obj_align_to(screen3_page, screens[3].screen, LV_ALIGN_TOP_RIGHT, 0, 0);
 
     lv_obj_t * icon_3 = lv_img_create(lv_scr_act());
-    lv_img_set_src(icon_3, &icon3);
+    lv_img_set_src(icon_3, &image_3);
     lv_obj_align_to(icon_3, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
