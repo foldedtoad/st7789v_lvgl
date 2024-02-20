@@ -31,7 +31,7 @@ static const struct device * display_dev;
 #define PARAM_ID_3      3
 #define PARAM_COUNT     3  //4
 
-LV_IMG_DECLARE(foldedtoad);
+LV_IMG_DECLARE(image_1);
 LV_IMG_DECLARE(icon2);
 LV_IMG_DECLARE(icon3);
 
@@ -266,7 +266,7 @@ void display_screens_init(void)
     lv_obj_align_to(screen1_label1_obj, screens[1].screen, LV_ALIGN_BOTTOM_RIGHT, -15, -5);
 
     lv_obj_t * icon_1 = lv_img_create(lv_scr_act());
-    lv_img_set_src(icon_1, &foldedtoad);
+    lv_img_set_src(icon_1, &image_1);
     lv_obj_align_to(icon_1, NULL, LV_ALIGN_CENTER, 0, 0);
 
     /*
