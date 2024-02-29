@@ -44,3 +44,19 @@ This build method use cmake directly, and doesn't use west or ninja.
 1) ***cd*** to st7789v_lvgl directory
 2) ***rm -rf build***
 3) ***west build -b rpi_pico_w**
+
+## Operation
+There are four buttons assigned the following actions:
+* Button1 -- Rotates the currently displayed page: 1-4 pages
+* Button2 -- Within the currently displayed page, rotate though the editable fields.
+* Button3 -- Within the current field, increase the value by step side. 
+* Button4 -- Within the current field, decrease the value by step side.  
+
+Screens (Pages) --
+* Pg1 -- Shows slider widget.  Use Button3 or Button4 to move slider.
+* Pg2 -- Shows two editable fields and an icon. Use Button3 or Button4 to change field value.
+* Pg3 -- Shows three labled fields. Use Button2 to select field.  Use Button3 or Button4 to change value.
+* Pg4 -- Shows only a simple graphic icon (old television test screen).
+
+![here](https://github.com/foldedtoad/st7789v_lvgl/blob/master/images/switches.jpg)
+
