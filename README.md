@@ -1,4 +1,4 @@
-# Zephyr Support for ST7789V Display Using LvGL on a RPI_PICO_W
+# Zephyr Support for ST7789V Display Using LVGL on a RPI_PICO_W
 
 ## Overview
 This sample application displays some simple LvGL capabilities using a Pico-W and ST7789V display panel.
