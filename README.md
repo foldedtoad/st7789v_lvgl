@@ -13,8 +13,8 @@ Display panel and a board which provides a configuration
 for example:
 
 * **ST7789V** based display panel:  [example](https://www.aliexpress.us/item/3256805850192151.html).
-* **PICO or PICO-W** Raspberry Pi RP2040 Eval Board.
-* **Momentary Switches** (4 each)
+* **PICO** or **PICO-W** Raspberry Pi RP2040 Eval Board.
+* **Momentary Switches** [example](https://www.amazon.com/CANADUINO®-Arduino-Raspberry-Tactile-Buttons/dp/B07PSDBT4H)
 
 ### Wiring and Soldering
 The 0.10" headers will need to be soldered onto the display pannel. In addition, wiring between the display panel and the PCA10056 board needs to be made.  
