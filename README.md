@@ -6,7 +6,7 @@ This sample application displays some simple LvGL capabilities using a Pico-W an
 It is hoped this project will provide a template for for ST7789 support on other SoC+board combinations.
 
 See the following video links --
-* [Pico-W rp2040](https://youtu.be/FVRU7HFSb6Y)  fix me!
+* [Zephyr+Pico+LvGL](https://youtu.be/NihAug9tYzU)
 
 ## Requirements
 Display panel and a board which provides a configuration
@@ -21,6 +21,9 @@ The 0.10" headers will need to be soldered onto the display pannel. In addition,
 Review the ***overlay*** files for wire-to-pin specifics.
 
 Be sure to wire the backlight pin, othewise the panel will remain dark.
+
+![here](https://github.com/foldedtoad/st7789v_lvgl/blob/master/images/overview.jpg)
+
 
 ## How to Build
 This project was developed using Zephyr V3.5, and successfully built on both Ubuntu and MacOS.  
