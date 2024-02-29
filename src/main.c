@@ -40,10 +40,9 @@ static int set_backlight_on(void)
 
     static const struct device * gpio;
 
-    LOG_INF("Backlight firmware configured");
-
     gpio = DEVICE_DT_GET(BACKLIGHT_GPIO_DEV);
     if (!gpio) {
+        LOG_ERR("Backlight failure");
         return -1;
     }
 
@@ -53,12 +52,9 @@ static int set_backlight_on(void)
     return 0;
 
 #elif defined(CONFIG_BACKLIGHT_MANUAL)
-
     LOG_INF("Backlight manually configured");
     return 0;
-
 #else
-
     LOG_ERR("Set Backlight configuration method");
     return 0     
 
@@ -68,20 +64,19 @@ static int set_backlight_on(void)
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*---------------------------------------------------------------------------*/
-void main_thread(void * id, void * unused1, void * unused2)
+
+int main(void)
 {
     LOG_INF("%s", __func__);
 
     if (set_backlight_on() < 0) {
-        LOG_ERR("Backlight failure: aborting");
-        return;
+        return -1;
     }
 
     buttons_init();
 
     if (display_init() < 0)
-        return;
-}
+        return -2;
 
-K_THREAD_DEFINE(main_id, STACKSIZE, main_thread, 
-                NULL, NULL, NULL, PRIORITY, 0, 0);
+    return 0;
+}

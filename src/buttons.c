@@ -63,7 +63,7 @@ static const button_info_t button_info [] = {
 
 static const button_info_t unknown = {.id=INVALID_ID, .pin=0 , .bit= 0, .name= "???"};
 
-#define DEBOUNCE_MS 150
+#define DEBOUNCE_MS 250
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */

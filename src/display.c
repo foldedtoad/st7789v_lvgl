@@ -84,6 +84,7 @@ typedef struct {
 /*---------------------------------------------------------------------------*/
 
 static lv_obj_t   * screen0_slider_obj;
+static lv_obj_t   * screen0_value_obj;
 static short        screen0_slider_value;
 
 static lv_obj_t   * screen1_label0_obj; 
@@ -149,8 +150,11 @@ void display_param_update(int screen_id, int param_id, bool inc)
     }
 
     if (lv_obj_check_type(*param->object, &lv_slider_class)) {
+        char value[6];
+        snprintf(value, sizeof(value), "%u%%", *param->value);
         lv_slider_set_value(*param->object, *param->value, LV_ANIM_OFF);
-        LOG_INF("%s: value %d", __func__, lv_slider_get_value(*param->object));
+        lv_label_set_text(screen0_value_obj, value);   // hack hack
+        LOG_INF("%s: slider value %s", __func__, value);
         return;
     }
 }
@@ -209,46 +213,31 @@ void display_screens_init(void)
     screens[2].screen = lv_obj_create(NULL);
     screens[3].screen = lv_obj_create(NULL);
 
-    static lv_style_t style_main;
-    static lv_style_t style_indicator;
-    static lv_style_t style_knob;
-
-    lv_style_init(&style_main);
-    lv_style_set_text_color(&style_main, lv_color_black());
-    lv_style_set_bg_color(&style_main, lv_color_white());
-
-    lv_style_init(&style_indicator);
-    lv_style_set_text_color(&style_indicator, lv_color_white());
-    lv_style_set_bg_color(&style_indicator, lv_color_black());
-    lv_style_set_border_width(&style_indicator, 2);
-    lv_style_set_radius(&style_indicator, LV_RADIUS_CIRCLE);
-
-    lv_style_init(&style_knob);
-    lv_style_set_text_color(&style_knob, lv_color_black());
-    lv_style_set_bg_color(&style_knob, lv_color_white());
-    lv_style_set_border_width(&style_knob, 2);
-    lv_style_set_radius(&style_knob, LV_RADIUS_CIRCLE);
-
     /*
      *  build basic screen0
      */
     lv_scr_load(screens[0].screen);
     lv_obj_t * screen0_label = lv_label_create(lv_scr_act());
     lv_label_set_text(screen0_label, "Pg1");
-    lv_obj_align_to(screen0_label, screens[0].screen, LV_ALIGN_TOP_RIGHT, 0, 0);
+    lv_obj_align_to(screen0_label, screens[0].screen, LV_ALIGN_TOP_RIGHT, -15, 10);
+
+    lv_obj_t * screen0_header = lv_label_create(lv_scr_act());
+    lv_label_set_text(screen0_header, "Slider");
+    lv_obj_align_to(screen0_header, screens[0].screen, LV_ALIGN_TOP_MID, 0, 35);
 
     screen0_slider_obj = lv_slider_create(lv_scr_act());
-    lv_slider_set_mode(screen0_slider_obj, LV_SLIDER_MODE_NORMAL);
-    lv_obj_add_style(screen0_slider_obj, &style_main, LV_PART_MAIN);
-    lv_obj_add_style(screen0_slider_obj, &style_indicator, LV_PART_INDICATOR);
-    lv_obj_add_style(screen0_slider_obj, &style_knob, LV_PART_KNOB);
-    lv_obj_set_height(screen0_slider_obj, 10); 
-    lv_obj_set_width(screen0_slider_obj, 300);    
+    lv_obj_set_style_bg_color(screen0_slider_obj, lv_palette_main(LV_PALETTE_GREEN), LV_PART_MAIN);
+    lv_obj_set_style_bg_color(screen0_slider_obj, lv_palette_lighten(LV_PALETTE_RED, 4), LV_PART_INDICATOR);
+    lv_obj_set_style_bg_color(screen0_slider_obj, lv_palette_main(LV_PALETTE_RED), LV_PART_KNOB);
+    lv_obj_set_size(screen0_slider_obj, 270, 10);
     lv_slider_set_range(screen0_slider_obj, 0, 100);
     lv_slider_set_value(screen0_slider_obj, 50, LV_ANIM_OFF);
-    screen0_slider_value = 50;
+    lv_obj_align_to(screen0_slider_obj, screens[0].screen, LV_ALIGN_CENTER, 0, 0);
 
-    lv_obj_align_to(screen0_slider_obj, NULL, LV_ALIGN_CENTER, 0, 0);
+    screen0_slider_value = 50;
+    screen0_value_obj = lv_label_create(lv_scr_act());
+    lv_label_set_text(screen0_value_obj, "50%");
+    lv_obj_align_to(screen0_value_obj, screens[0].screen, LV_ALIGN_BOTTOM_MID, 0, -10);
 
     /*
      *  build basic screen1
@@ -256,7 +245,7 @@ void display_screens_init(void)
     lv_scr_load(screens[1].screen);
     lv_obj_t * screen1_page = lv_label_create(lv_scr_act());
     lv_label_set_text(screen1_page, "Pg2");
-    lv_obj_align_to(screen1_page, screens[1].screen, LV_ALIGN_TOP_RIGHT, 0, 0);
+    lv_obj_align_to(screen1_page, screens[1].screen, LV_ALIGN_TOP_RIGHT, -15, 10);
 
     screen1_label0_obj = lv_label_create(lv_scr_act());
     lv_label_set_text(screen1_label0_obj, "0");
@@ -276,7 +265,11 @@ void display_screens_init(void)
     lv_scr_load(screens[2].screen);
     lv_obj_t * screen2_page = lv_label_create(lv_scr_act());
     lv_label_set_text(screen2_page, "Pg3");
-    lv_obj_align_to(screen2_page, screens[2].screen, LV_ALIGN_TOP_RIGHT, 0, 0);
+    lv_obj_align_to(screen2_page, screens[2].screen, LV_ALIGN_TOP_RIGHT, -15, 10);
+
+    lv_obj_t * screen2_header = lv_label_create(lv_scr_act());
+    lv_label_set_text(screen2_header, "Variable Input");
+    lv_obj_align_to(screen2_header, screens[2].screen, LV_ALIGN_TOP_MID, 0, 20);
 
     //
     lv_obj_t * screen2_label0_tag = lv_label_create(lv_scr_act());
@@ -311,7 +304,7 @@ void display_screens_init(void)
     lv_scr_load(screens[3].screen);
     lv_obj_t * screen3_page = lv_label_create(lv_scr_act());
     lv_label_set_text(screen3_page, "Pg4");
-    lv_obj_align_to(screen3_page, screens[3].screen, LV_ALIGN_TOP_RIGHT, 0, 0);
+    lv_obj_align_to(screen3_page, screens[3].screen, LV_ALIGN_TOP_RIGHT, -15, 10);
 
     lv_obj_t * icon_3 = lv_img_create(lv_scr_act());
     lv_img_set_src(icon_3, &image_3);
@@ -328,7 +321,6 @@ int display_init(void)
         LOG_ERR("Display device not found.");
         return -1;
     }
-    LOG_INF("Display device: %s", DT_NODE_FULL_NAME(DT_CHOSEN(zephyr_display)));
 
     display_screens_init();
 
