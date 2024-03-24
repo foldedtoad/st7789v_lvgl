@@ -43,7 +43,7 @@ This build method use cmake directly, and doesn't use west or ninja.
 ### West Method
 1) ***cd*** to st7789v_lvgl directory
 2) ***rm -rf build***
-3) ***west build -b rpi_pico_w**
+3) ***west build -b rpi_pico_w***
 
 ## Operation
 There are four buttons assigned the following actions:
