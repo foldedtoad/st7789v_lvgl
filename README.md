@@ -17,7 +17,7 @@ for example:
 * **Momentary Switches** [example](https://www.amazon.com/CANADUINO®-Arduino-Raspberry-Tactile-Buttons/dp/B07PSDBT4H)
 
 ### Wiring and Soldering
-The 0.10" headers will need to be soldered onto the display pannel. In addition, wiring between the display panel and the PCA10056 board needs to be made.  
+The 0.10" headers will need to be soldered onto the display pannel. In addition, wiring between the display panel and the PICO-W board needs to be made.  
 Review the ***overlay*** files for wire-to-pin specifics.
 
 Be sure to wire the backlight pin, othewise the panel will remain dark.
